@@ -239,4 +239,4 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 // http://level2.jointheleague.org/LeagueInvadersPt.8ShipObject
 // http://level2.jointheleague.org/league_invaders_demo
 // http://level2.jointheleague.org/league_invaders_contents
-// Part 8 Step 6
+// Part 10 Step 5
