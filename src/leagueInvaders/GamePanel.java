@@ -31,11 +31,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font enemies;
 	Font subtitle;
 
+	Rocketship rs = new Rocketship(250, 700, 50, 50);
+
+	ObjectManager om = new ObjectManager(rs);
+
 	void updateMenuState() {
 
 	}
 
 	void updateGameState() {
+
+		om.update();
 
 	}
 
@@ -72,6 +78,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height);
+
+		om.draw(g);
+
 	}
 
 	void drawEndState(Graphics g) {
@@ -90,12 +99,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.BLACK);
 
 		g.drawString("You Killed __ Enemies", 110, 300);
-		
-		g.setFont(subtitle);
-        
-        g.setColor(Color.BLACK);
 
-        g.drawString("Press ENTER to Restart", 110, 450);
+		g.setFont(subtitle);
+
+		g.setColor(Color.BLACK);
+
+		g.drawString("Press ENTER to Restart", 110, 450);
 	}
 
 	@Override
@@ -112,6 +121,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (CURRENT_STATE == END_STATE) {
 			drawEndState(g);
 		}
+		
+		repaint();
 
 	}
 
@@ -130,8 +141,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		gameOver = new Font("Arial", Font.PLAIN, 48);
 
 		enemies = new Font("Arial", Font.PLAIN, 24);
-		
+
 		subtitle = new Font("Arial", Font.PLAIN, 24);
+
 	}
 
 	void startGame() {
@@ -192,6 +204,29 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		}
 
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+
+			rs.updatePositionL();
+
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			rs.updatePositionR();
+
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+
+			rs.updatePositionU();
+
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+
+			rs.updatePositionD();
+
+		}
+
 	}
 
 	@Override
@@ -201,7 +236,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 }
 
-//http://level2.jointheleague.org/LeagueInvadersPt.8ShipObject
-//http://level2.jointheleague.org/league_invaders_demo
-//http://level2.jointheleague.org/league_invaders_contents
-//Part 8 Step 6
+// http://level2.jointheleague.org/LeagueInvadersPt.8ShipObject
+// http://level2.jointheleague.org/league_invaders_demo
+// http://level2.jointheleague.org/league_invaders_contents
+// Part 8 Step 6
