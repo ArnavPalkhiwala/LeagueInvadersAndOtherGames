@@ -80,6 +80,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height);
 
 		rs.draw(g);
+		om.draw(g);
 
 	}
 
@@ -169,7 +170,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		// TODO Auto-generated method stub
 		repaint();
-		System.out.println("Message");
+		System.out.println(" ");
 	}
 
 	@Override
@@ -214,7 +215,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			rs.updatePositionR();
 
 		}
-
+    
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 
 			rs.updatePositionU();
@@ -225,6 +226,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 			rs.updatePositionD();
 
+		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			
+	        om.addProjectile(new Projectile(rs.x + 22, rs.y, 10, 10));
 		}
 
 	}
@@ -239,4 +245,4 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 // http://level2.jointheleague.org/LeagueInvadersPt.8ShipObject
 // http://level2.jointheleague.org/league_invaders_demo
 // http://level2.jointheleague.org/league_invaders_contents
-// Part 10 Step 5
+// Part 11 Step 10

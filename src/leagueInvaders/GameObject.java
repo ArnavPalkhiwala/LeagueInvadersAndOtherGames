@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 public class GameObject {
 	
-	boolean isAlive = true;
+	public boolean isAlive = true;
 
 	int x;
 	int y;

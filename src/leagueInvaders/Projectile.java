@@ -15,6 +15,7 @@ public class Projectile extends GameObject {
 
 	}
 
+	
 	void update() {
 		
 		y = y - speed;
