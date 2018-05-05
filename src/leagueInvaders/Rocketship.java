@@ -15,33 +15,48 @@ public class Rocketship extends GameObject {
 	}
 
 	void update() {
+		
+
 
 	}
 
+	
+
 	void updatePositionR() {
 		
-		speed = 5;
+        super.update();
+
+		
+		speed = 15;
 		x += speed;
 
 	}
 
 	void updatePositionL() {
+		
+        super.update();
 
-		speed = -5;
+
+		speed = -15;
 		x += speed;
 
 	}
 
 	void updatePositionU() {
-		
-		speed = 5;
+
+        super.update();
+
+		speed = 15;
 		y += speed;
 
 	}
 
 	void updatePositionD() {
+		
+        super.update();
 
-		speed = -5;
+
+		speed = -15;
 		y += speed;
 
 	}

@@ -1,3 +1,4 @@
+
 package leagueInvaders;
 
 import java.awt.Color;
@@ -8,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -42,6 +44,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void updateGameState() {
 
 		om.update();
+		om.manageEnemies();
+		om.purgeObjects();
+		om.checkCollision();
+		
+		if (rs.isAlive == false) {
+			CURRENT_STATE = END_STATE;
+			rs.isAlive = true;
+			om.aliensList = new ArrayList<Alien>();
+	
+		}
 
 	}
 
@@ -99,7 +111,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		g.setColor(Color.BLACK);
 
-		g.drawString("You Killed __ Enemies", 110, 300);
+		g.drawString("You Killed " + om.getScore() + " Enemies", 110, 300);
 
 		g.setFont(subtitle);
 
@@ -187,6 +199,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 			if (e.getKeyChar() == KeyEvent.VK_ENTER) {
 				CURRENT_STATE = GAME_STATE;
+				om.setScore(0);
 			}
 
 		}
@@ -203,6 +216,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				CURRENT_STATE = MENU_STATE;
 			}
 
+		}
+		
+		if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+			
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -245,4 +262,4 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 // http://level2.jointheleague.org/LeagueInvadersPt.8ShipObject
 // http://level2.jointheleague.org/league_invaders_demo
 // http://level2.jointheleague.org/league_invaders_contents
-// Part 11 Step 10
+// Part 13 Step 1

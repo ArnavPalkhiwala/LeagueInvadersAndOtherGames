@@ -18,6 +18,8 @@ public class Projectile extends GameObject {
 	
 	void update() {
 		
+        super.update();
+		
 		y = y - speed;
 		
 		if (y < 0) {

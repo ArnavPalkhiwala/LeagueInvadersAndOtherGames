@@ -12,9 +12,19 @@ public class ObjectManager {
 
 	Rocketship rs;
 
-	int enemyTimer = 0;
+	long enemyTimer = 0;
 
-	int enemySpawnTime = 750;
+	int enemySpawnTime = 1000;
+	
+	private int score = 0;
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
 
 	public ObjectManager(Rocketship rs) {
 
@@ -67,20 +77,64 @@ public class ObjectManager {
 		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
 			Alien(new Alien(new Random().nextInt(LeagueInvaders.width), 0, 50, 50));
 
-			enemyTimer = (int) System.currentTimeMillis();
+			enemyTimer =  System.currentTimeMillis();
+
 		}
 	}
 
 	void purgeObjects() {
 		
+		ArrayList<Alien> removeAlien = new ArrayList<Alien>();
+		
 		for (Alien alien : aliensList) {
 			
-			if (alien.isAlive) {
-				
+			if (alien.isAlive == false) {
+					removeAlien.add(alien);
 			}
 			
 		}
+		aliensList.removeAll(removeAlien);
 
+	}
+	
+	void checkCollision () {
+		
+		for(Alien alien : aliensList){
+
+	        if(rs.collisionBox.intersects(alien.collisionBox)) {
+
+	                rs.isAlive = false;
+	                
+
+	        }
+	        
+	       }
+		
+
+        
+        
+        for (Projectile pj : projectilesList) {
+        	
+        	for (Alien alien : aliensList) {
+        		
+        		if(alien.collisionBox.intersects(pj.collisionBox)) {
+
+                    alien.isAlive = false;
+                    pj.isAlive = false;
+                    
+	                score = score + 1;
+
+
+            }
+
+				
+			}
+        	
+        	        	
+        }
+
+
+		
 	}
 
 }
