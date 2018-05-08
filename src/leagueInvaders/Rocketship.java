@@ -27,7 +27,7 @@ public class Rocketship extends GameObject {
         super.update();
 
 		
-		speed = 15;
+		speed = 25;
 		x += speed;
 
 	}
@@ -37,7 +37,7 @@ public class Rocketship extends GameObject {
         super.update();
 
 
-		speed = -15;
+		speed = -25;
 		x += speed;
 
 	}
@@ -46,7 +46,7 @@ public class Rocketship extends GameObject {
 
         super.update();
 
-		speed = 15;
+		speed = 25;
 		y += speed;
 
 	}
@@ -56,7 +56,7 @@ public class Rocketship extends GameObject {
         super.update();
 
 
-		speed = -15;
+		speed = -25;
 		y += speed;
 
 	}

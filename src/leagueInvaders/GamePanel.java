@@ -45,8 +45,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		om.update();
 		om.manageEnemies();
-		om.purgeObjects();
 		om.checkCollision();
+		om.purgeObjects();
+
+		
 		
 		if (rs.isAlive == false) {
 			CURRENT_STATE = END_STATE;
@@ -201,6 +203,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				CURRENT_STATE = GAME_STATE;
 				om.setScore(0);
 			}
+			
+			
 
 		}
 
@@ -219,6 +223,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}
 		
 		if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+			
+			if (CURRENT_STATE == END_STATE) {
+				
+				rs = new Rocketship(250, 700, 50, 50);
+				
+				om = new ObjectManager(rs);
+				
+			}
 			
 		}
 

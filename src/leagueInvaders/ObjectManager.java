@@ -43,6 +43,8 @@ public class ObjectManager {
 
 			a.update();
 		}
+		
+		rs.update();
 
 	}
 
@@ -121,6 +123,7 @@ public class ObjectManager {
 
                     alien.isAlive = false;
                     pj.isAlive = false;
+                    
                     
 	                score = score + 1;
 
