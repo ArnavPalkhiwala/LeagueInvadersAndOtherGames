@@ -15,7 +15,7 @@ public class ObjectManager {
 	long enemyTimer = 0;
 
 	int enemySpawnTime = 1000;
-	
+
 	private int score = 0;
 
 	public int getScore() {
@@ -43,7 +43,7 @@ public class ObjectManager {
 
 			a.update();
 		}
-		
+
 		rs.update();
 
 	}
@@ -79,65 +79,55 @@ public class ObjectManager {
 		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
 			Alien(new Alien(new Random().nextInt(LeagueInvaders.width), 0, 50, 50));
 
-			enemyTimer =  System.currentTimeMillis();
+			enemyTimer = System.currentTimeMillis();
 
 		}
 	}
 
 	void purgeObjects() {
-		
+
 		ArrayList<Alien> removeAlien = new ArrayList<Alien>();
-		
+
 		for (Alien alien : aliensList) {
-			
+
 			if (alien.isAlive == false) {
-					removeAlien.add(alien);
+				removeAlien.add(alien);
 			}
-			
+
 		}
 		aliensList.removeAll(removeAlien);
 
 	}
-	
-	void checkCollision () {
-		
-		for(Alien alien : aliensList){
 
-	        if(rs.collisionBox.intersects(alien.collisionBox)) {
+	void checkCollision() {
 
-	                rs.isAlive = false;
-	                
+		for (Alien alien : aliensList) {
 
-	        }
-	        
-	       }
-		
+			if (rs.collisionBox.intersects(alien.collisionBox)) {
 
-        
-        
-        for (Projectile pj : projectilesList) {
-        	
-        	for (Alien alien : aliensList) {
-        		
-        		if(alien.collisionBox.intersects(pj.collisionBox)) {
+				rs.isAlive = false;
 
-                    alien.isAlive = false;
-                    pj.isAlive = false;
-                    
-                    
-	                score = score + 1;
-
-
-            }
-
-				
 			}
-        	
-        	        	
-        }
 
+		}
 
-		
+		for (Projectile pj : projectilesList) {
+
+			for (Alien alien : aliensList) {
+
+				if (alien.collisionBox.intersects(pj.collisionBox)) {
+
+					alien.isAlive = false;
+					pj.isAlive = false;
+
+					score = score + 1;
+
+				}
+
+			}
+
+		}
+
 	}
 
 }

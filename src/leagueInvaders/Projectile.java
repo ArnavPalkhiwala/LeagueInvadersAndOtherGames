@@ -1,6 +1,5 @@
 package leagueInvaders;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class Projectile extends GameObject {
@@ -11,28 +10,25 @@ public class Projectile extends GameObject {
 		super(x, y, height, width);
 		// TODO Auto-generated constructor stub
 
-		speed = 10;
+		speed = 14;
 
 	}
 
-	
 	void update() {
-		
-        super.update();
-		
+
+		super.update();
+
 		y = y - speed;
-		
+
 		if (y < 0) {
-		isAlive =  false;	
+			isAlive = false;
 		}
 	}
 
 	void draw(Graphics g) {
-		
-		g.setColor(Color.RED);
-		g.fillRect(x, y, width, height);
-		
+
+		g.drawImage(GamePanel.bulletImg, x, y, width, height, null);
+
 	}
-	
-	
+
 }

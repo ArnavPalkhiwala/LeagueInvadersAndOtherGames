@@ -2,15 +2,17 @@
 package leagueInvaders;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -37,6 +39,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	ObjectManager om = new ObjectManager(rs);
 
+	public static BufferedImage alienImg;
+
+	public static BufferedImage rocketImg;
+
+	public static BufferedImage bulletImg;
+
+	public static BufferedImage spaceImg;
+
 	void updateMenuState() {
 
 	}
@@ -48,13 +58,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		om.checkCollision();
 		om.purgeObjects();
 
-		
-		
 		if (rs.isAlive == false) {
 			CURRENT_STATE = END_STATE;
 			rs.isAlive = true;
 			om.aliensList = new ArrayList<Alien>();
-	
+
 		}
 
 	}
@@ -136,7 +144,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (CURRENT_STATE == END_STATE) {
 			drawEndState(g);
 		}
-		
+
 		repaint();
 
 	}
@@ -159,6 +167,23 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		subtitle = new Font("Arial", Font.PLAIN, 24);
 
+		try {
+
+			alienImg = ImageIO.read(this.getClass().getResourceAsStream("alien-1.png"));
+
+			rocketImg = ImageIO.read(this.getClass().getResourceAsStream("rocket.png"));
+
+			bulletImg = ImageIO.read(this.getClass().getResourceAsStream("bullet.png"));
+
+			spaceImg = ImageIO.read(this.getClass().getResourceAsStream("space.png"));
+
+		} catch (IOException e) {
+
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+
+		}
 	}
 
 	void startGame() {
@@ -201,10 +226,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 			if (e.getKeyChar() == KeyEvent.VK_ENTER) {
 				CURRENT_STATE = GAME_STATE;
+				rs.x = 225;
 				om.setScore(0);
 			}
-			
-			
 
 		}
 
@@ -221,17 +245,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			}
 
 		}
-		
-		if (e.getKeyChar() == KeyEvent.VK_ENTER) {
-			
-			if (CURRENT_STATE == END_STATE) {
-				
+
+		if (CURRENT_STATE == END_STATE) {
+
+			if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+
 				rs = new Rocketship(250, 700, 50, 50);
-				
+
 				om = new ObjectManager(rs);
-				
+
 			}
-			
+
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -244,7 +268,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			rs.updatePositionR();
 
 		}
-    
+
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 
 			rs.updatePositionU();
@@ -256,10 +280,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			rs.updatePositionD();
 
 		}
-		
+
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			
-	        om.addProjectile(new Projectile(rs.x + 22, rs.y, 10, 10));
+
+			om.addProjectile(new Projectile(rs.x + 22, rs.y, 10, 10));
 		}
 
 	}
