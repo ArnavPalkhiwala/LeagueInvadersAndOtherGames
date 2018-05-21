@@ -1,18 +1,21 @@
-package leagueInvaders;
+package RacketSmash;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
-public class Rocketship extends GameObject {
+import leagueInvaders.GamePanel;
 
+public class PlayerTennisRacket  extends TennisGameObject {
+	
 	int speed;
-
-	public Rocketship(int x, int y, int height, int width) {
-		super(x, y, height, width);
+	
+	public PlayerTennisRacket (int x, int y, int height, int width) {
+		super(x, y, width, height);
 
 		speed = 15;
 
 	}
-
+	
 	void update() {
 
 	}
@@ -55,8 +58,11 @@ public class Rocketship extends GameObject {
 
 	void draw(Graphics g) {
 
-		g.drawImage(GamePanel.rocketImg, x, y, width, height, null);
 
+   	 g.setColor(Color.BLUE);
+		g.fillRect(x, y, 75, 75);    	
 	}
+
+
 
 }

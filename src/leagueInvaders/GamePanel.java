@@ -62,7 +62,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			CURRENT_STATE = END_STATE;
 			rs.isAlive = true;
 			om.aliensList = new ArrayList<Alien>();
-
+			
 		}
 
 	}

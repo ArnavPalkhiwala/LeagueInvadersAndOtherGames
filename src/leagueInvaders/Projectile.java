@@ -1,4 +1,4 @@
-package leagueInvaders;
+ package leagueInvaders;
 
 import java.awt.Graphics;
 
