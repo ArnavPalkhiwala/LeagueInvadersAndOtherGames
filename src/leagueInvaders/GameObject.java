@@ -14,7 +14,7 @@ public class GameObject {
 	int height;
 	int width;
 
-	public GameObject(int x, int y, int height, int width) {
+	public GameObject(int x, int y, int width, int height) {
 
 		this.x = x;
 		this.y = y;

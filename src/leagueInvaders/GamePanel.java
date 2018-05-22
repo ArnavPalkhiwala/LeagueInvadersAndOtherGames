@@ -62,8 +62,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			CURRENT_STATE = END_STATE;
 			rs.isAlive = true;
 			om.aliensList = new ArrayList<Alien>();
+			om.projectilesList = new ArrayList<Projectile>();
 			
 		}
+		
+		
 
 	}
 
@@ -98,10 +101,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	void drawGameState(Graphics g) {
 
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height);
+	
+		g.drawImage(spaceImg, 0, 0, LeagueInvaders.width, LeagueInvaders.height, null);
 
-		rs.draw(g);
 		om.draw(g);
 
 	}

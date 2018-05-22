@@ -42,17 +42,19 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 	public void paintComponent(Graphics g) {
 
-		if (CURRENT_STATE == MENU_STATE) {
-			drawMenuState(g);
+		if (CURRRENTSTATE == MENUSTATE) {
+			drawMENUSTATE(g);
 		}
 
-		if (CURRENT_STATE == GAME_STATE) {
-			drawGameState(g);
+		if (CURRRENTSTATE == GAMESTATE) {
+			drawGAMESTATE(g);
 		}
 
-		if (CURRENT_STATE == END_STATE) {
-			drawEndState(g);
+		if (CURRRENTSTATE == ENDSTATE) {
+			drawENDSTATE(g);
 		}
+		
+		ptr.draw(g);
 
 		repaint();
 

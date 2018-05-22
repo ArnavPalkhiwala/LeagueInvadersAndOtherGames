@@ -56,7 +56,7 @@ public class ObjectManager {
 
 	}
 
-	void Alien(Alien a) {
+	void addAlien(Alien a) {
 
 		aliensList.add(a);
 
@@ -75,11 +75,12 @@ public class ObjectManager {
 			al.draw(g);
 		}
 
+		rs.draw(g);
 	}
 
 	public void manageEnemies() {
 		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
-			Alien(new Alien(new Random().nextInt(LeagueInvaders.width), 0, 50, 50));
+			addAlien(new Alien(new Random().nextInt(LeagueInvaders.width), 0, 50, 50));
 
 			enemyTimer = System.currentTimeMillis();
 
@@ -88,18 +89,29 @@ public class ObjectManager {
 
 	void purgeObjects() {
 
-		ArrayList<Alien> removeAlien = new ArrayList<Alien>();
 
-		for (Alien alien : aliensList) {
-
-			if (alien.isAlive == false) {
-				removeAlien.add(alien);
+		for (int i = 0; i < aliensList.size(); i++) {
+			
+			if (aliensList.get(i).isAlive == false) {
+				aliensList.remove(i);
 			}
+			
+		}
+		
+		for (int i = 0; i < projectilesList.size(); i++) {
+			
+			if (projectilesList.get(i).isAlive == false) {
+				projectilesList.remove(i);
+				
+			}
+			
+		}
+			
+			
 
 		}
-		aliensList.removeAll(removeAlien);
 
-	}
+	
 
 	void checkCollision() {
 
@@ -108,6 +120,7 @@ public class ObjectManager {
 			if (rs.collisionBox.intersects(alien.collisionBox)) {
 
 				rs.isAlive = false;
+				
 
 			}
 
@@ -121,6 +134,7 @@ public class ObjectManager {
 
 					alien.isAlive = false;
 					pj.isAlive = false;
+				
 
 					score = score + 1;
 

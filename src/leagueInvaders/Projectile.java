@@ -23,6 +23,8 @@ public class Projectile extends GameObject {
 		if (y < 0) {
 			isAlive = false;
 		}
+		
+		
 	}
 
 	void draw(Graphics g) {
