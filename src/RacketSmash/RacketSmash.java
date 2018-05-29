@@ -12,9 +12,9 @@ public class RacketSmash extends TennisGamePanel{
 	
 	TennisGamePanel tgp;
 	
-	final int width = 500;
+	final static int width = 1000;
 	
-	final int height = 800;
+	final static int height = 2000;
 	
 	public RacketSmash() {
 		

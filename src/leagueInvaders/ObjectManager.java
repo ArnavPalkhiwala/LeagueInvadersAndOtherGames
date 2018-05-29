@@ -120,6 +120,7 @@ public class ObjectManager {
 			if (rs.collisionBox.intersects(alien.collisionBox)) {
 
 				rs.isAlive = false;
+				alien.isAlive = false;
 				
 
 			}
@@ -134,6 +135,7 @@ public class ObjectManager {
 
 					alien.isAlive = false;
 					pj.isAlive = false;
+					
 				
 
 					score = score + 1;

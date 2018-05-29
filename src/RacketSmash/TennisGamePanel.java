@@ -1,6 +1,7 @@
 package RacketSmash;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +26,15 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 	TennisGameObject tgo;
 	PlayerTennisRacket ptr;
+	
+	Font titleFont;
+	Font subtitleFont;
+	Font subtitle2Font;
+
+	Font gameOver;
+	Font enemies;
+	Font subtitle;
+
 
 	public static BufferedImage imagesImg;
 
@@ -37,6 +47,18 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 		tgo = new TennisGameObject(10, 10, 100, 100);
 
 		ptr = new PlayerTennisRacket(250, 700, 50, 50);
+		
+		titleFont = new Font("Arial", Font.PLAIN, 48);
+
+		subtitleFont = new Font("Arial", Font.PLAIN, 24);
+
+		subtitle2Font = new Font("Arial", Font.PLAIN, 24);
+
+		gameOver = new Font("Arial", Font.PLAIN, 48);
+
+		enemies = new Font("Arial", Font.PLAIN, 24);
+
+		subtitle = new Font("Arial", Font.PLAIN, 24);
 
 	}
 
@@ -96,13 +118,32 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	}
 
 	void drawMENUSTATE(Graphics g) {
+		
+
+		g.drawImage(tenniscourt, 0, 0, RacketSmash.width, RacketSmash.height, null);
+		
+		g.setColor(Color.RED);
+
+		g.setFont(titleFont);
+
+		g.drawString("Racket Smash", 25, 150);
+
+		g.setFont(subtitleFont);
+
+		g.setColor(Color.RED);
+
+		g.drawString("Press ENTER to Start", 110, 300);
+
+		g.setFont(subtitle2Font);
+
+		g.setColor(Color.RED);
+
+		g.drawString("Press SPACE for Instructions", 80, 450);
 
 	}
 
 	void drawGAMESTATE(Graphics g) {
 		
-		ptr.draw(g);
-
 
 	}
 
