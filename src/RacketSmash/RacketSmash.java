@@ -36,12 +36,13 @@ public class RacketSmash extends TennisGamePanel{
 	void setupWindow () {
 		
 		frame.setSize(1000,2000);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		frame.add(tgp);
 		frame.addKeyListener(tgp);
 
 		frame.getContentPane().setPreferredSize(new Dimension(1000,3500));
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
 		

@@ -8,10 +8,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import leagueInvaders.LeagueInvaders;
 
 public class TennisGamePanel extends JPanel implements ActionListener, KeyListener {
 
@@ -34,11 +38,12 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	Font gameOver;
 	Font enemies;
 	Font subtitle;
+	Font goodjob;
 
 
 	public static BufferedImage imagesImg;
 
-	public static BufferedImage tenniscourt;
+	public static BufferedImage tenniscourtImg;
 
 	public TennisGamePanel() {
 
@@ -48,17 +53,33 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 		ptr = new PlayerTennisRacket(250, 700, 50, 50);
 		
-		titleFont = new Font("Arial", Font.PLAIN, 48);
+		titleFont = new Font("Cambria", Font.PLAIN, 48);
 
-		subtitleFont = new Font("Arial", Font.PLAIN, 24);
+		subtitleFont = new Font("Cambria", Font.PLAIN, 24);
 
-		subtitle2Font = new Font("Arial", Font.PLAIN, 24);
+		subtitle2Font = new Font("Cambria", Font.PLAIN, 24);
 
-		gameOver = new Font("Arial", Font.PLAIN, 48);
+		gameOver = new Font("Cambria", Font.PLAIN, 48);
+		
+		goodjob = new Font("Cambria", Font.PLAIN, 48);
 
-		enemies = new Font("Arial", Font.PLAIN, 24);
+		enemies = new Font("Cambria", Font.PLAIN, 36);
 
-		subtitle = new Font("Arial", Font.PLAIN, 24);
+		subtitle = new Font("Cambria", Font.PLAIN, 36);try {
+
+		tenniscourtImg = ImageIO.read(this.getClass().getResourceAsStream("tenniscourt.png"));
+		
+
+
+		} catch (IOException e) {
+
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+
+		}
+
+		
 
 	}
 
@@ -120,25 +141,25 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	void drawMENUSTATE(Graphics g) {
 		
 
-		g.drawImage(tenniscourt, 0, 0, RacketSmash.width, RacketSmash.height, null);
+		g.drawImage(tenniscourtImg, -500, 0, 2000, 3500, null);
 		
-		g.setColor(Color.RED);
+		g.setColor(Color.BLACK);
 
 		g.setFont(titleFont);
 
-		g.drawString("Racket Smash", 25, 150);
+		g.drawString("Welcome to Racket Smash", 150, 150);
 
 		g.setFont(subtitleFont);
 
-		g.setColor(Color.RED);
+		g.setColor(Color.BLACK);
 
-		g.drawString("Press ENTER to Start", 110, 300);
+		g.drawString("If you know how to play, press ENTER to begin", 215, 400);
 
 		g.setFont(subtitle2Font);
 
-		g.setColor(Color.RED);
+		g.setColor(Color.BLACK);
 
-		g.drawString("Press SPACE for Instructions", 80, 450);
+		g.drawString("If you need the instructions, press SPACE", 245, 550);
 
 	}
 
@@ -148,6 +169,32 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	}
 
 	void drawENDSTATE(Graphics g) {
+		
+		g.drawImage(tenniscourtImg, -500, 0, 2000, 3500, null);
+
+		g.setColor(Color.RED);
+
+		g.setFont(gameOver);
+
+		g.setColor(Color.BLACK);
+
+		g.drawString("GAME OVER: You Died", 245, 150);
+		
+		g.setColor(Color.BLACK);
+		
+		g.drawString("Great Job!", 345, 340);
+		
+		g.setFont(enemies);
+
+		g.setColor(Color.BLACK);
+
+		g.drawString("You Killed __ Enemies", 310, 450);
+
+		g.setFont(subtitle);
+
+		g.setColor(Color.BLACK);
+
+		g.drawString("Press ENTER to Restart", 325, 550);
 
 	}
 
@@ -160,6 +207,41 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
+		
+		if (CURRRENTSTATE == MENUSTATE) {
+	
+		
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			
+			CURRRENTSTATE = GAMESTATE;
+			
+		}
+		
+		}
+		
+		else if (CURRRENTSTATE == GAMESTATE) {
+			
+			
+			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+				
+				CURRRENTSTATE = ENDSTATE;
+				
+			}
+			
+			}
+		
+		else if (CURRRENTSTATE == ENDSTATE) {
+			
+			
+			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+				
+				CURRRENTSTATE = MENUSTATE;
+				
+			}
+			
+			}
+
+
 
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 
