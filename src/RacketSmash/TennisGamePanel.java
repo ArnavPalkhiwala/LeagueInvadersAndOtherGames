@@ -30,7 +30,9 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 	TennisGameObject tgo;
 	PlayerTennisRacket ptr;
+	OpponentRacket OR;
 	
+
 	Font titleFont;
 	Font subtitleFont;
 	Font subtitle2Font;
@@ -40,10 +42,11 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	Font subtitle;
 	Font goodjob;
 
-
 	public static BufferedImage imagesImg;
 
 	public static BufferedImage tenniscourtImg;
+
+	public static BufferedImage TC;
 
 	public TennisGamePanel() {
 
@@ -51,8 +54,10 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 		tgo = new TennisGameObject(10, 10, 100, 100);
 
-		ptr = new PlayerTennisRacket(250, 700, 50, 50);
+		ptr = new PlayerTennisRacket(RacketSmash.WIDTH/2, RacketSmash.HEIGHT + 75, 50, 50);
 		
+		OR = new OpponentRacket(RacketSmash.WIDTH/2, 15, 15, 50);
+
 		titleFont = new Font("Cambria", Font.PLAIN, 48);
 
 		subtitleFont = new Font("Cambria", Font.PLAIN, 24);
@@ -60,16 +65,17 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 		subtitle2Font = new Font("Cambria", Font.PLAIN, 24);
 
 		gameOver = new Font("Cambria", Font.PLAIN, 48);
-		
+
 		goodjob = new Font("Cambria", Font.PLAIN, 48);
 
 		enemies = new Font("Cambria", Font.PLAIN, 36);
 
-		subtitle = new Font("Cambria", Font.PLAIN, 36);try {
+		subtitle = new Font("Cambria", Font.PLAIN, 36);
+		try {
 
-		tenniscourtImg = ImageIO.read(this.getClass().getResourceAsStream("tenniscourt.png"));
-		
+			tenniscourtImg = ImageIO.read(this.getClass().getResourceAsStream("tenniscourt.png"));
 
+			TC = ImageIO.read(this.getClass().getResourceAsStream("Tennis_court.jpg"));
 
 		} catch (IOException e) {
 
@@ -78,8 +84,6 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 			e.printStackTrace();
 
 		}
-
-		
 
 	}
 
@@ -96,8 +100,7 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 		if (CURRRENTSTATE == ENDSTATE) {
 			drawENDSTATE(g);
 		}
-		
-		ptr.draw(g);
+
 
 		repaint();
 
@@ -109,16 +112,14 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 		tgo.update();
 		repaint();
-		
-		 if(CURRRENTSTATE == MENUSTATE){
-             updateMENUSTATE();
-     }
-		 else if(CURRRENTSTATE == GAMESTATE){
-             updateGAMESTATE();
-     }
-		 else if(CURRRENTSTATE == ENDSTATE){
-             updateENDSTATE();
-     }
+
+		if (CURRRENTSTATE == MENUSTATE) {
+			updateMENUSTATE();
+		} else if (CURRRENTSTATE == GAMESTATE) {
+			updateGAMESTATE();
+		} else if (CURRRENTSTATE == ENDSTATE) {
+			updateENDSTATE();
+		}
 
 	}
 
@@ -139,10 +140,9 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	}
 
 	void drawMENUSTATE(Graphics g) {
-		
 
 		g.drawImage(tenniscourtImg, -500, 0, 2000, 3500, null);
-		
+
 		g.setColor(Color.BLACK);
 
 		g.setFont(titleFont);
@@ -164,12 +164,14 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	}
 
 	void drawGAMESTATE(Graphics g) {
-		
 
+		g.drawImage(TC, 0, 0, RacketSmash.width, RacketSmash.height, null);
+		ptr.draw(g);
+		OR.draw(g);
 	}
 
 	void drawENDSTATE(Graphics g) {
-		
+
 		g.drawImage(tenniscourtImg, -500, 0, 2000, 3500, null);
 
 		g.setColor(Color.RED);
@@ -179,22 +181,22 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 		g.setColor(Color.BLACK);
 
 		g.drawString("GAME OVER: You Died", 245, 150);
-		
+
 		g.setColor(Color.BLACK);
-		
-		g.drawString("Great Job!", 345, 340);
-		
+
+		g.drawString("Great Job!", 360, 340);
+
 		g.setFont(enemies);
 
 		g.setColor(Color.BLACK);
 
-		g.drawString("You Killed __ Enemies", 310, 450);
+		g.drawString("You Killed __ Enemies", 292, 450);
 
 		g.setFont(subtitle);
 
 		g.setColor(Color.BLACK);
 
-		g.drawString("Press ENTER to Restart", 325, 550);
+		g.drawString("Press ENTER to Restart", 280, 550);
 
 	}
 
@@ -207,41 +209,37 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 		if (CURRRENTSTATE == MENUSTATE) {
-	
-		
-		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			
-			CURRRENTSTATE = GAMESTATE;
-			
+
+			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+
+				CURRRENTSTATE = GAMESTATE;
+
+			}
+
 		}
-		
-		}
-		
+
 		else if (CURRRENTSTATE == GAMESTATE) {
 			
-			
+
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-				
+
 				CURRRENTSTATE = ENDSTATE;
-				
+
 			}
-			
-			}
-		
+
+		}
+
 		else if (CURRRENTSTATE == ENDSTATE) {
-			
-			
+
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-				
+
 				CURRRENTSTATE = MENUSTATE;
-				
-			}
-			
+
 			}
 
-
+		}
 
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 
@@ -271,6 +269,7 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 
+		
 	}
 
 }

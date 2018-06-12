@@ -24,7 +24,7 @@ public class PlayerTennisRacket  extends TennisGameObject {
 
 		super.update(); 
 
-		speed = 45;
+		speed = 35;
 		x += speed;
 
 	}
@@ -33,17 +33,17 @@ public class PlayerTennisRacket  extends TennisGameObject {
 
 		super.update();
 
-		speed = -45;
-		x += speed;
+		speed = 35;
+		x -= speed;
 
 	}
 
 	void updatePositionU() {
 
 		super.update();
-
-		speed = 45;
-		y += speed;
+		
+		speed = 35;
+		y -= speed;
 
 	}
 
@@ -51,15 +51,24 @@ public class PlayerTennisRacket  extends TennisGameObject {
 
 		super.update();
 
-		speed = -45;
+		speed = 35;
 		y += speed;
 
 	}
 
 	void draw(Graphics g) {
+		
+		g.setColor(Color.BLUE);
 
+		g.fillRect(x , y , width, height);
+		
+		System.out.println(x + " " + y + " " + width + " " + height);
+		
+	}
 
-		g.drawImage(TennisGamePanel.imagesImg, x, y, 75, 75, null);    	
+	private void fillrect(int i, int j, int k, int l) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
