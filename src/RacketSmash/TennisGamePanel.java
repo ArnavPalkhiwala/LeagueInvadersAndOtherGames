@@ -12,6 +12,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -27,11 +28,12 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	final int ENDSTATE = 2;
 
 	int CURRRENTSTATE = MENUSTATE;
+	
 
 	TennisGameObject tgo;
 	PlayerTennisRacket ptr;
 	OpponentRacket OR;
-	
+	TennisObjectManager tom = new TennisObjectManager(ptr);
 
 	Font titleFont;
 	Font subtitleFont;
@@ -54,9 +56,9 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 		tgo = new TennisGameObject(10, 10, 100, 100);
 
-		ptr = new PlayerTennisRacket(RacketSmash.WIDTH/2, RacketSmash.HEIGHT + 75, 50, 50);
-		
-		OR = new OpponentRacket(RacketSmash.WIDTH/2, 15, 15, 50);
+		ptr = new PlayerTennisRacket(RacketSmash.width / 2 - 20, RacketSmash.height - 1150, 50, 50);
+
+		OR = new OpponentRacket(RacketSmash.width / 2, 15, 15, 50);
 
 		titleFont = new Font("Cambria", Font.PLAIN, 48);
 
@@ -84,6 +86,8 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 			e.printStackTrace();
 
 		}
+		
+		startGame();
 
 	}
 
@@ -101,7 +105,6 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 			drawENDSTATE(g);
 		}
 
-
 		repaint();
 
 	}
@@ -109,6 +112,7 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
 
 		tgo.update();
 		repaint();
@@ -132,6 +136,8 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	}
 
 	void updateGAMESTATE() {
+		
+		tom.update();
 
 	}
 
@@ -168,6 +174,7 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 		g.drawImage(TC, 0, 0, RacketSmash.width, RacketSmash.height, null);
 		ptr.draw(g);
 		OR.draw(g);
+		tom.draw(g);
 	}
 
 	void drawENDSTATE(Graphics g) {
@@ -215,13 +222,13 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 
 				CURRRENTSTATE = GAMESTATE;
+				tom.tennisBallsList.add(new TennisBalls(50,0,50,50));
 
 			}
 
 		}
 
 		else if (CURRRENTSTATE == GAMESTATE) {
-			
 
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 
@@ -263,13 +270,25 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 			ptr.updatePositionU();
 
 		}
+
+		if (CURRRENTSTATE == MENUSTATE) {
+
+			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+
+				JOptionPane.showMessageDialog(null,
+						"Racket Smash is a game where the player must hit the tennis balls that appear in the top of the screen "
+						+ "(and move down) with the player’s tennis racket. Once you bounce the tennis ball onto the other racket at"
+						+ " the top of the screen, you get a point. Try to get as many points as you can!");
+
+			}
+
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 
-		
 	}
 
 }
