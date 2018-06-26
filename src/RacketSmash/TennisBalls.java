@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class TennisBalls extends TennisGameObject{
+	
+	int ySpeed = 3;
+	int xSpeed = 0;
 
 	public TennisBalls(int x, int y, int width, int height) {
 		super(x, y, width, height);
@@ -23,6 +26,7 @@ public class TennisBalls extends TennisGameObject{
 		
 		g.setColor(Color.YELLOW);
 		g.fillRect(x, y, width, height);
+		
 	}
 
 }

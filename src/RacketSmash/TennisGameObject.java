@@ -2,6 +2,7 @@ package RacketSmash;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public class TennisGameObject {
 	
@@ -9,6 +10,8 @@ public class TennisGameObject {
      int y;
      int width;
      int height;
+     
+     Rectangle collisionBox;
      
      
      public TennisGameObject(int x, int y, int width, int height) {
@@ -21,9 +24,15 @@ public class TennisGameObject {
     	 this.width = width;
     	 this.height = height;
     	 
+    	 collisionBox = new Rectangle(x, y, width, height);
+    	 
+    	 
      }
      
      void update() {
+    	 
+    	 collisionBox.setBounds(x, y, width, height);
+
     	 
      }
      

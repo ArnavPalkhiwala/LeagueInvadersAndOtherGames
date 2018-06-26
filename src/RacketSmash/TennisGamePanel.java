@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -73,6 +74,7 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 		enemies = new Font("Cambria", Font.PLAIN, 36);
 
 		subtitle = new Font("Cambria", Font.PLAIN, 36);
+		
 		try {
 
 			tenniscourtImg = ImageIO.read(this.getClass().getResourceAsStream("tenniscourt.png"));
@@ -137,6 +139,7 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 	void updateGAMESTATE() {
 		
+		tom.manageTennisBalls();
 		tom.update();
 
 	}
@@ -222,7 +225,9 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 
 				CURRRENTSTATE = GAMESTATE;
-				tom.tennisBallsList.add(new TennisBalls(50,0,50,50));
+				Random ran = new Random();
+				int x = ran.nextInt(1001);
+//				tom.tennisBallsList.add(new TennisBalls(x,0,50,50));
 
 			}
 
