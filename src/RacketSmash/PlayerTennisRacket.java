@@ -17,6 +17,8 @@ public class PlayerTennisRacket  extends TennisGameObject {
 	}
 	
 	void update() {
+		
+		super.update();
 
 	}
 

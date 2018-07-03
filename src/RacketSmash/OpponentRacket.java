@@ -17,7 +17,7 @@ public class OpponentRacket extends TennisGameObject {
 	void draw(Graphics g) {
 
 		g.setColor(Color.RED);
-		g.fillRect(480, 10, 50, 50);
+		g.fillRect(465, 10, 150, 150);
 
 	}
 

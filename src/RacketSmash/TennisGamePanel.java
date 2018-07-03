@@ -34,7 +34,8 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	TennisGameObject tgo;
 	PlayerTennisRacket ptr;
 	OpponentRacket OR;
-	TennisObjectManager tom = new TennisObjectManager(ptr);
+	TennisBalls tennisBalls;
+	TennisObjectManager tom;  
 
 	Font titleFont;
 	Font subtitleFont;
@@ -60,6 +61,8 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 		ptr = new PlayerTennisRacket(RacketSmash.width / 2 - 20, RacketSmash.height - 1150, 50, 50);
 
 		OR = new OpponentRacket(RacketSmash.width / 2, 15, 15, 50);
+		
+		tom = new TennisObjectManager(ptr, tennisBalls);
 
 		titleFont = new Font("Cambria", Font.PLAIN, 48);
 
@@ -139,8 +142,10 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 	void updateGAMESTATE() {
 		
-		tom.manageTennisBalls();
 		tom.update();
+		tom.manageTennisBalls();
+		tom.checkCollision();
+		tom.purgeObjects();
 
 	}
 
