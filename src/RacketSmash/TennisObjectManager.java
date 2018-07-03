@@ -72,7 +72,7 @@ public class TennisObjectManager {
 				tennisBalls.xSpeed = r.nextInt(rangeX);
 				tennisBalls.y = tennisBalls.ySpeed;
 				tennisBalls.x = tennisBalls.xSpeed;
-				System.out.println("It works");
+				System.out.println("It works now");
 				
 				
 
