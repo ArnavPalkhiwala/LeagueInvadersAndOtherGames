@@ -16,14 +16,29 @@ public class TennisObjectManager {
 
 	TennisBalls tennisBalls;
 
+	OpponentRacket or;
+
 	int ballSpawnTime = 2500;
 
 	long tennisTimer = 0;
 
-	public TennisObjectManager(PlayerTennisRacket ptr, TennisBalls tennisBalls) {
+	private int totalScore;
+
+	public int gettotalScore() {
+
+		return totalScore;
+	}
+
+	public void setTotalScore() {
+
+		this.totalScore = totalScore;
+	}
+
+	public TennisObjectManager(PlayerTennisRacket ptr, TennisBalls tennisBalls, OpponentRacket or) {
 
 		this.ptr = ptr;
 		this.tennisBalls = tennisBalls;
+		this.or = or;
 
 	}
 
@@ -61,40 +76,38 @@ public class TennisObjectManager {
 
 	void checkCollision() {
 
+		ArrayList<TennisBalls> TennisBalls2 = (ArrayList<TennisBalls>) tennisBallsList.clone();
+
 		for (TennisBalls tennisBalls : tennisBallsList) {
 
-			if (ptr.collisionBox.intersects(tennisBalls.collisionBox)) {
+			if (tennisBalls.collisionBox.intersects(ptr.collisionBox)) {
 
 				Random r = new Random();
 				int rangeX = RacketSmash.width - ptr.x;
 				int rangeY = ptr.y - 10;
-				tennisBalls.ySpeed = -3;
+				tennisBalls.ySpeed = -2;
 				tennisBalls.xSpeed = r.nextInt(rangeX);
 				tennisBalls.y = tennisBalls.ySpeed;
 				tennisBalls.x = tennisBalls.xSpeed;
-				System.out.println("It works now");
-				
-				
+
+			}
+
+			// if (tennisBalls.y <= 75) {
+			// tennisBallsList.remove(tennisBalls);
+			// }
+
+			if (tennisBalls.collisionBox.intersects(or.collisionBox)) {
+
+				System.out.println("It works");
+				totalScore = totalScore + 1;
+				TennisBalls2.remove(tennisBalls);
 
 			}
 
 		}
 
-	}
-
-	void purgeObjects() {
-		
-			
-			for (int i = 0; i < tennisBallsList.size(); i++) {
-				
-				if (tennisBallsList.get(i).y <= 75) {
-					tennisBallsList.remove(i);
-				}
-				
-			}
-			
-			
-		}
+		tennisBallsList = TennisBalls2;
 
 	}
 
+}
