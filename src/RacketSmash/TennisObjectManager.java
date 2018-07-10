@@ -18,7 +18,7 @@ public class TennisObjectManager {
 
 	OpponentRacket or;
 
-	int ballSpawnTime = 2500;
+	int ballSpawnTime = 2000;
 
 	long tennisTimer = 0;
 
@@ -85,22 +85,38 @@ public class TennisObjectManager {
 				Random r = new Random();
 				int rangeX = RacketSmash.width - ptr.x;
 				int rangeY = ptr.y - 10;
-				tennisBalls.ySpeed = -2;
-				tennisBalls.xSpeed = r.nextInt(rangeX);
-				tennisBalls.y = tennisBalls.ySpeed;
-				tennisBalls.x = tennisBalls.xSpeed;
+				int z = (RacketSmash.width - tennisBalls.width) - tennisBalls.x;
+				int a = z / ((RacketSmash.height - tennisBalls.y) / tennisBalls.ySpeed);
+				tennisBalls.xSpeed = (((RacketSmash.width - tennisBalls.width) - tennisBalls.x)
+						/ ((RacketSmash.height - tennisBalls.y) / tennisBalls.ySpeed));
+
+				if (tennisBalls.ySpeed > 0) {
+
+					tennisBalls.ySpeed *= -1;
+					tennisBalls.ySpeed = tennisBalls.ySpeed;
+					
+					
+
+				}
 
 			}
 
-			// if (tennisBalls.y <= 75) {
+			// if (tennisBalls.collisionBox.intersects(ptr.collisionBox) ) {
+			//
+			// if (tennisBalls.y <= 100) {
+			//
 			// tennisBallsList.remove(tennisBalls);
+			//
+			// System.out.println("It actually works");
+			//
+			// }
+			//
 			// }
 
 			if (tennisBalls.collisionBox.intersects(or.collisionBox)) {
 
 				System.out.println("It works");
 				totalScore = totalScore + 1;
-				TennisBalls2.remove(tennisBalls);
 
 			}
 

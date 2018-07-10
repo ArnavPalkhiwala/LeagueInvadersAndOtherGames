@@ -59,7 +59,7 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 		ptr = new PlayerTennisRacket(RacketSmash.width / 2 + 75, RacketSmash.height - 1150, 50, 50);
 
-		or = new OpponentRacket(RacketSmash.width / 2, 15, 150, 150);
+		or = new OpponentRacket(RacketSmash.width / 2 - 75, 15, 200, 200);
 
 		tom = new TennisObjectManager(ptr, tennisBalls, or);
 
@@ -202,7 +202,9 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 		g.setColor(Color.BLACK);
 
-		g.drawString("You Earned " + tom.gettotalScore() + " Points", 292, 450);
+		int x = tom.gettotalScore() + -70;
+		int y = x - 73;
+		g.drawString("You Earned " + y + " Point(s)", 292, 450);
 
 		g.setFont(subtitle);
 

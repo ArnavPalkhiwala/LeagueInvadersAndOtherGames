@@ -19,7 +19,8 @@ public class TennisBalls extends TennisGameObject{
 		
 		
 		
-		y += 3;
+		y += ySpeed;
+		x += xSpeed;
 	}
 	
 	void draw(Graphics g) {
