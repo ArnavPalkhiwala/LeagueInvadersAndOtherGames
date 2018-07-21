@@ -24,16 +24,15 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	Timer timer;
 	JFrame frame;
 
-	final int MENUSTATE = 0;
-	final int GAMESTATE = 1;
-	final int ENDSTATE = 2;
+	final static int MENUSTATE = 0;
+	final static int GAMESTATE = 1;
+	final static int ENDSTATE = 2;
 
-	int CURRRENTSTATE = MENUSTATE;
+	static int CURRRENTSTATE = MENUSTATE;
 
 	TennisGameObject tgo;
 	PlayerTennisRacket ptr;
 	OpponentRacket or;
-	TennisBalls tennisBalls;
 	TennisObjectManager tom;
 
 	Font titleFont;
@@ -57,11 +56,11 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 		tgo = new TennisGameObject(10, 10, 100, 100);
 
-		ptr = new PlayerTennisRacket(RacketSmash.width / 2 + 75, RacketSmash.height - 1150, 50, 50);
-
+		ptr = new PlayerTennisRacket(RacketSmash.width / 2 + 75, RacketSmash.height - 100, 50, 50);
+				
 		or = new OpponentRacket(RacketSmash.width / 2 - 75, 15, 200, 200);
 
-		tom = new TennisObjectManager(ptr, tennisBalls, or);
+		tom = new TennisObjectManager(ptr, or);
 
 		titleFont = new Font("Cambria", Font.PLAIN, 48);
 
@@ -93,6 +92,12 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 		startGame();
 
+	}
+	
+	public static void setCurrentState(int x) {
+		
+		CURRRENTSTATE = x;
+		
 	}
 
 	public void paintComponent(Graphics g) {
@@ -143,8 +148,10 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 		tom.update();
 		tom.manageTennisBalls();
 		tom.checkCollision();
-
-	}
+		tom.checkIfLose();
+			
+		}
+	
 
 	void updateENDSTATE() {
 
@@ -177,6 +184,7 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	void drawGAMESTATE(Graphics g) {
 
 		g.drawImage(TC, 0, 0, RacketSmash.width, RacketSmash.height, null);
+		g.drawRect(0, 0, RacketSmash.width, RacketSmash.height);
 		ptr.draw(g);
 		or.draw(g);
 		tom.draw(g);
@@ -185,6 +193,7 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	void drawENDSTATE(Graphics g) {
 
 		g.drawImage(tenniscourtImg, -500, 0, 2000, 3500, null);
+
 
 		g.setColor(Color.RED);
 

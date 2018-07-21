@@ -14,7 +14,7 @@ public class RacketSmash extends TennisGamePanel{
 	
 	final static int width = 1000;
 	
-	final static int height = 2000;
+	final static int height = 950;
 	
 	public RacketSmash() {
 		
@@ -35,12 +35,12 @@ public class RacketSmash extends TennisGamePanel{
 	
 	void setupWindow () {
 		
-		frame.setSize(1000,2000);
+		frame.setSize(width ,height);
 		
 		frame.add(tgp);
 		frame.addKeyListener(tgp);
 
-		frame.getContentPane().setPreferredSize(new Dimension(1000,3500));
+		frame.getContentPane().setPreferredSize(new Dimension(width,height));
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();

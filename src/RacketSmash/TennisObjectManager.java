@@ -14,8 +14,6 @@ public class TennisObjectManager {
 
 	PlayerTennisRacket ptr;
 
-	TennisBalls tennisBalls;
-
 	OpponentRacket or;
 
 	int ballSpawnTime = 2000;
@@ -34,10 +32,9 @@ public class TennisObjectManager {
 		this.totalScore = totalScore;
 	}
 
-	public TennisObjectManager(PlayerTennisRacket ptr, TennisBalls tennisBalls, OpponentRacket or) {
+	public TennisObjectManager(PlayerTennisRacket ptr, OpponentRacket or) {
 
 		this.ptr = ptr;
-		this.tennisBalls = tennisBalls;
 		this.or = or;
 
 	}
@@ -94,8 +91,6 @@ public class TennisObjectManager {
 
 					tennisBalls.ySpeed *= -1;
 					tennisBalls.ySpeed = tennisBalls.ySpeed;
-					
-					
 
 				}
 
@@ -124,6 +119,27 @@ public class TennisObjectManager {
 
 		tennisBallsList = TennisBalls2;
 
+	}
+
+	void checkIfLose() {
+
+		TennisBalls tb = null;
+
+		for (TennisBalls tennisBalls : tennisBallsList) {
+
+			if (tennisBalls.y > RacketSmash.height) {
+				tb = tennisBalls;
+				break;
+
+			}
+		}
+
+		if (tb != null) {
+
+			System.out.println(tennisBallsList.remove(tb));
+			TennisGamePanel.setCurrentState(TennisGamePanel.ENDSTATE);
+
+		}
 	}
 
 }
