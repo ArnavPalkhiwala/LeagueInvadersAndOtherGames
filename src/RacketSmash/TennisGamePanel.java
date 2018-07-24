@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
@@ -57,7 +58,7 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 		tgo = new TennisGameObject(10, 10, 100, 100);
 
 		ptr = new PlayerTennisRacket(RacketSmash.width / 2 + 75, RacketSmash.height - 100, 50, 50);
-				
+
 		or = new OpponentRacket(RacketSmash.width / 2 - 75, 15, 200, 200);
 
 		tom = new TennisObjectManager(ptr, or);
@@ -93,11 +94,11 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 		startGame();
 
 	}
-	
+
 	public static void setCurrentState(int x) {
-		
+
 		CURRRENTSTATE = x;
-		
+
 	}
 
 	public void paintComponent(Graphics g) {
@@ -148,10 +149,27 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 		tom.update();
 		tom.manageTennisBalls();
 		tom.checkCollision();
-		tom.checkIfLose();
+		boolean x = tom.checkIfLose();
+
+		if (x == true) {
+
 			
+			x = false;
+			
+			tgo = new TennisGameObject(10, 10, 100, 100);
+
+			ptr = new PlayerTennisRacket(RacketSmash.width / 2 + 75, RacketSmash.height - 100, 50, 50);
+
+			or = new OpponentRacket(RacketSmash.width / 2 - 75, 15, 200, 200);
+
+			tom = new TennisObjectManager(ptr, or);
+			
+			TennisGamePanel.setCurrentState(TennisGamePanel.ENDSTATE);
+
+
 		}
-	
+
+	}
 
 	void updateENDSTATE() {
 
@@ -193,7 +211,6 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	void drawENDSTATE(Graphics g) {
 
 		g.drawImage(tenniscourtImg, -500, 0, 2000, 3500, null);
-
 
 		g.setColor(Color.RED);
 

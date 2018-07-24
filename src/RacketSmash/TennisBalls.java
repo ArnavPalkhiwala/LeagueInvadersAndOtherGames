@@ -7,6 +7,7 @@ public class TennisBalls extends TennisGameObject{
 	
 	int ySpeed = 3;
 	int xSpeed = 0;
+	boolean isAlive = true;
 
 	public TennisBalls(int x, int y, int width, int height) {
 		super(x, y, width, height);

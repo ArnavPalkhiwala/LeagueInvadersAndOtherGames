@@ -42,6 +42,7 @@ public class TennisObjectManager {
 	void addTheTennisBalls(TennisBalls tb) {
 
 		tennisBallsList.add(tb);
+		
 	}
 
 	void draw(Graphics g) {
@@ -121,25 +122,36 @@ public class TennisObjectManager {
 
 	}
 
-	void checkIfLose() {
+	boolean checkIfLose() {
+//
+//		TennisBalls tb = null;
+//
+//		for (TennisBalls tennisBalls : tennisBallsList) {
+//
+//			if (tennisBalls.y > RacketSmash.height) {
+//				tb = tennisBalls;
+//				break;
+//
+//			}
+//		}
+//
+//		if (tb != null) {
+//
+//			System.out.println(tennisBallsList.remove(tb));
+//			TennisGamePanel.setCurrentState(TennisGamePanel.ENDSTATE);
+//
+//		}
 
-		TennisBalls tb = null;
+		for (int i = 0; i < tennisBallsList.size(); i++) {
 
-		for (TennisBalls tennisBalls : tennisBallsList) {
-
-			if (tennisBalls.y > RacketSmash.height) {
-				tb = tennisBalls;
-				break;
+			if (tennisBallsList.get(i).y > RacketSmash.height) {
+				
+				return true;
 
 			}
-		}
-
-		if (tb != null) {
-
-			System.out.println(tennisBallsList.remove(tb));
-			TennisGamePanel.setCurrentState(TennisGamePanel.ENDSTATE);
 
 		}
+		return false;
 	}
 
 }
