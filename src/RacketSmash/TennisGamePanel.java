@@ -35,6 +35,7 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	PlayerTennisRacket ptr;
 	OpponentRacket or;
 	TennisObjectManager tom;
+	TennisBalls tennisBalls;
 
 	Font titleFont;
 	Font subtitleFont;
@@ -61,7 +62,7 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 		or = new OpponentRacket(RacketSmash.width / 2 - 75, 15, 200, 200);
 
-		tom = new TennisObjectManager(ptr, or);
+		tom = new TennisObjectManager(ptr, tennisBalls, or);
 
 		titleFont = new Font("Cambria", Font.PLAIN, 48);
 
@@ -149,20 +150,20 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 		tom.update();
 		tom.manageTennisBalls();
 		tom.checkCollision();
-		boolean x = tom.checkIfLose();
 
-		if (x == true) {
+		if (tom.checkIfLose()) {
 
-			
-			x = false;
+			System.out.println("End Game");
 			
 			tgo = new TennisGameObject(10, 10, 100, 100);
 
 			ptr = new PlayerTennisRacket(RacketSmash.width / 2 + 75, RacketSmash.height - 100, 50, 50);
 
 			or = new OpponentRacket(RacketSmash.width / 2 - 75, 15, 200, 200);
+			
+			//tennisBalls = new TennisBalls
 
-			tom = new TennisObjectManager(ptr, or);
+			tom = new TennisObjectManager(ptr, null, or);
 			
 			TennisGamePanel.setCurrentState(TennisGamePanel.ENDSTATE);
 
@@ -253,7 +254,7 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 		if (CURRRENTSTATE == MENUSTATE) {
 
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-
+				
 				CURRRENTSTATE = GAMESTATE;
 				Random ran = new Random();
 				int x = ran.nextInt(1001);
@@ -276,7 +277,7 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 		else if (CURRRENTSTATE == ENDSTATE) {
 
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-
+				resetGame();
 				CURRRENTSTATE = MENUSTATE;
 
 			}
@@ -318,6 +319,23 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 			}
 
 		}
+	}
+
+	private void resetGame() {
+		// TODO Auto-generated method stub
+		System.out.println("End Game");
+		
+		tgo = new TennisGameObject(10, 10, 100, 100);
+
+		ptr = new PlayerTennisRacket(RacketSmash.width / 2 + 75, RacketSmash.height - 100, 50, 50);
+
+		or = new OpponentRacket(RacketSmash.width / 2 - 75, 15, 200, 200);
+		
+		//tennisBalls = new TennisBalls
+
+		tom = new TennisObjectManager(ptr, null, or);
+		
+		TennisGamePanel.setCurrentState(TennisGamePanel.ENDSTATE);
 	}
 
 	@Override

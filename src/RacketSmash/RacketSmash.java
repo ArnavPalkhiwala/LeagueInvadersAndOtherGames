@@ -35,7 +35,7 @@ public class RacketSmash extends TennisGamePanel{
 	
 	void setupWindow () {
 		
-		frame.setSize(width ,height);
+		frame.setSize(width , height);
 		
 		frame.add(tgp);
 		frame.addKeyListener(tgp);

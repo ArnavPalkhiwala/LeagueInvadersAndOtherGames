@@ -18,6 +18,17 @@ public class TennisBalls extends TennisGameObject{
 		
 		super.update();
 		
+		if (x <= 0) {
+			xSpeed = 1;
+			
+		}
+		
+		if (x >= RacketSmash.width) {
+			
+			xSpeed = -1;
+			
+		}
+		
 		
 		
 		y += ySpeed;
@@ -30,5 +41,7 @@ public class TennisBalls extends TennisGameObject{
 		g.fillRect(x, y, width, height);
 		
 	}
+	
+
 
 }

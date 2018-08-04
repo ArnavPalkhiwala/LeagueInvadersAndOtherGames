@@ -8,7 +8,7 @@ import leagueInvaders.Alien;
 import leagueInvaders.LeagueInvaders;
 import leagueInvaders.Rocketship;
 
-public class TennisObjectManager {
+public class tennisObjectManagers {
 
 	ArrayList<TennisBalls> tennisBallsList = new ArrayList<TennisBalls>();
 
@@ -29,12 +29,12 @@ public class TennisObjectManager {
 		return totalScore;
 	}
 
-	public void setTotalScore(int totalScore) {
+	public void setTotalScore() {
 
 		this.totalScore = totalScore;
 	}
 
-	public TennisObjectManager(PlayerTennisRacket ptr, TennisBalls tennisBalls, OpponentRacket or) {
+	public tennisObjectManagers(PlayerTennisRacket ptr, TennisBalls tennisBalls, OpponentRacket or) {
 
 		this.ptr = ptr;
 		this.tennisBalls = tennisBalls;
@@ -83,7 +83,6 @@ public class TennisObjectManager {
 			if (tennisBalls.collisionBox.intersects(ptr.collisionBox)) {
 
 				Random r = new Random();
-				r.nextInt(RacketSmash.width);
 				int rangeX = RacketSmash.width - ptr.x;
 				int rangeY = ptr.y - 10;
 				int z = (RacketSmash.width - tennisBalls.width) - tennisBalls.x;
@@ -128,26 +127,21 @@ public class TennisObjectManager {
 	}
 	
 	boolean checkIfLose() {
+		
+		for (int i = 0; i < tennisBallsList.size(); i++) {
 
-
-
-		for (TennisBalls tennisBalls : tennisBallsList) {
-			
-
-			if (tennisBalls.y > RacketSmash.height) {
-				tennisBallsList.remove(tennisBalls);
+			if (tennisBallsList.get(i).y > RacketSmash.height) {
+				
 				tennisBallsList.clear();
-				tennisBallsList = new ArrayList<TennisBalls>();
-				TennisGamePanel.setCurrentState(TennisGamePanel.ENDSTATE);
 				return true;
 
 			}
+
 		}
-
-
 		return false;
 	}
 
 	
 
 }
+
