@@ -58,9 +58,9 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 		tgo = new TennisGameObject(10, 10, 100, 100);
 
-		ptr = new PlayerTennisRacket(RacketSmash.width / 2 + 75, RacketSmash.height - 100, 50, 50);
+		ptr = new PlayerTennisRacket(RacketSmash.width / 2 + 75, RacketSmash.height - 100, 100, 50);
 
-		or = new OpponentRacket(RacketSmash.width / 2 - 75, 15, 200, 200);
+		or = new OpponentRacket(0, RacketSmash.height / 2, 100, 100);
 
 		tom = new TennisObjectManager(ptr, tennisBalls, or);
 
@@ -229,9 +229,8 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 		g.setColor(Color.BLACK);
 
-		int x = tom.gettotalScore() + -70;
-		int y = x - 73;
-		g.drawString("You Earned " + y + " Point(s)", 292, 450);
+		int x = tom.gettotalScore() ;
+		g.drawString("You Earned " + x + " Point(s)", 292, 450);
 
 		g.setFont(subtitle);
 
@@ -331,8 +330,6 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 		or = new OpponentRacket(RacketSmash.width / 2 - 75, 15, 200, 200);
 		
-		//tennisBalls = new TennisBalls
-
 		tom = new TennisObjectManager(ptr, null, or);
 		
 		TennisGamePanel.setCurrentState(TennisGamePanel.ENDSTATE);

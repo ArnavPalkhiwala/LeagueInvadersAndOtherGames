@@ -82,45 +82,30 @@ public class TennisObjectManager {
 
 			if (tennisBalls.collisionBox.intersects(ptr.collisionBox)) {
 
-				Random r = new Random();
-				r.nextInt(RacketSmash.width);
-				int rangeX = RacketSmash.width - ptr.x;
-				int rangeY = ptr.y - 10;
-				int z = (RacketSmash.width - tennisBalls.width) - tennisBalls.x;
-				int a = z / ((RacketSmash.height - tennisBalls.y) / tennisBalls.ySpeed);
-				tennisBalls.xSpeed = (((RacketSmash.width - tennisBalls.width) - tennisBalls.x)
-						/ ((RacketSmash.height - tennisBalls.y) / tennisBalls.ySpeed));
+			int x = tennisBalls.x;
+			int y = ptr.x;
+			Random r = new Random();
+			r.nextInt(RacketSmash.width);
+			int rangeX = RacketSmash.width - ptr.x;
+			int rangeY = ptr.y - 10;
+			int z = (RacketSmash.width - tennisBalls.width) - tennisBalls.x;
+			int a = z / ((RacketSmash.height - tennisBalls.y) / tennisBalls.ySpeed);
+			tennisBalls.xSpeed = (((RacketSmash.width - tennisBalls.width) - tennisBalls.x)
+					/ ((RacketSmash.height - tennisBalls.y) / tennisBalls.ySpeed));
 
-				if (tennisBalls.ySpeed > 0) {
+			if (tennisBalls.ySpeed > 0) {
 
-					tennisBalls.ySpeed *= -1;
-					tennisBalls.ySpeed = tennisBalls.ySpeed;
-					
-					
-
-				}
-
-			}
-
-			// if (tennisBalls.collisionBox.intersects(ptr.collisionBox) ) {
-			//
-			// if (tennisBalls.y <= 100) {
-			//
-			// tennisBallsList.remove(tennisBalls);
-			//
-			// System.out.println("It actually works");
-			//
-			// }
-			//
-			// }
-
-			if (tennisBalls.collisionBox.intersects(or.collisionBox)) {
-
-				System.out.println("It works");
-				totalScore = totalScore + 1;
+				tennisBalls.ySpeed *= -1;
+				tennisBalls.ySpeed = tennisBalls.ySpeed;
+				
+				
 
 			}
 
+			}
+
+
+		
 		}
 
 		tennisBallsList = TennisBalls2;
@@ -142,6 +127,14 @@ public class TennisObjectManager {
 				return true;
 
 			}
+			
+			if (tennisBalls.collisionBox.intersects(ptr.collisionBox)) {
+
+				System.out.println("It works");
+				totalScore = totalScore + 1;
+
+			}
+
 		}
 
 
