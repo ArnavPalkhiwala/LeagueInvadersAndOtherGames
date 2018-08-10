@@ -62,7 +62,9 @@ public class PlayerTennisRacket  extends TennisGameObject {
 		
 		g.setColor(Color.BLUE);
 
-		g.fillRect(x , y , 50, 50);
+		g.drawImage(TennisGamePanel.racketImg, x - 50 , y , 125, 125, null);
+		
+
 		
 		
 	}

@@ -51,6 +51,13 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	public static BufferedImage tenniscourtImg;
 
 	public static BufferedImage TC;
+	
+	public static BufferedImage tbImg;
+	
+	public static BufferedImage racketImg;
+	
+	public static BufferedImage danger;
+
 
 	public TennisGamePanel() {
 
@@ -58,7 +65,7 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 		tgo = new TennisGameObject(10, 10, 100, 100);
 
-		ptr = new PlayerTennisRacket(RacketSmash.width / 2 + 75, RacketSmash.height - 100, 100, 50);
+		ptr = new PlayerTennisRacket(RacketSmash.width / 2 + 75, RacketSmash.height - 120, 100, 50);
 
 		or = new OpponentRacket(0, RacketSmash.height / 2, 100, 100);
 
@@ -83,6 +90,13 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 			tenniscourtImg = ImageIO.read(this.getClass().getResourceAsStream("tenniscourt.png"));
 
 			TC = ImageIO.read(this.getClass().getResourceAsStream("Tennis_court.jpg"));
+			
+			tbImg = ImageIO.read(this.getClass().getResourceAsStream("tb.png")); 
+			
+			racketImg = ImageIO.read(this.getClass().getResourceAsStream("racket.png")); 
+			
+			danger = ImageIO.read(this.getClass().getResourceAsStream("download.png")); 
+
 
 		} catch (IOException e) {
 
@@ -157,9 +171,9 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 			
 			tgo = new TennisGameObject(10, 10, 100, 100);
 
-			ptr = new PlayerTennisRacket(RacketSmash.width / 2 + 75, RacketSmash.height - 100, 50, 50);
-
-			or = new OpponentRacket(RacketSmash.width / 2 - 75, 15, 200, 200);
+			ptr = new PlayerTennisRacket(RacketSmash.width / 2 + 75, RacketSmash.height - 120, 50, 50);
+			
+			or = new OpponentRacket(0, RacketSmash.height / 2, 100, 100);
 			
 			//tennisBalls = new TennisBalls
 
@@ -326,10 +340,10 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 		
 		tgo = new TennisGameObject(10, 10, 100, 100);
 
-		ptr = new PlayerTennisRacket(RacketSmash.width / 2 + 75, RacketSmash.height - 100, 50, 50);
+		ptr = new PlayerTennisRacket(RacketSmash.width / 2 + 75, RacketSmash.height - 120, 50, 50);
 
-		or = new OpponentRacket(RacketSmash.width / 2 - 75, 15, 200, 200);
-		
+		or = new OpponentRacket(0, RacketSmash.height / 2, 100, 100);
+
 		tom = new TennisObjectManager(ptr, null, or);
 		
 		TennisGamePanel.setCurrentState(TennisGamePanel.ENDSTATE);

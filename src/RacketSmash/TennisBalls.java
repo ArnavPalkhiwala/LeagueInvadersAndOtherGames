@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 public class TennisBalls extends TennisGameObject{
 	
-	int ySpeed = 3;
+	int ySpeed = 4;
 	int xSpeed = 0;
 	boolean isAlive = true;
 
@@ -38,7 +38,7 @@ public class TennisBalls extends TennisGameObject{
 	void draw(Graphics g) {
 		
 		g.setColor(Color.YELLOW);
-		g.fillRect(x, y, width, height);
+		g.drawImage( TennisGamePanel.tbImg, x, y, width, height, null);
 		
 	}
 	

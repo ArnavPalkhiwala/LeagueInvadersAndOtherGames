@@ -31,7 +31,7 @@ public class TennisGameObject {
      
      void update() {
     	 
-    	 collisionBox.setBounds(x, y, width, height);
+    	 collisionBox.setBounds(x + 5, y, width, height);
 
     	 
      }
