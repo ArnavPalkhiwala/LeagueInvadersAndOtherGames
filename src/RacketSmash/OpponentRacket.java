@@ -9,15 +9,44 @@ public class OpponentRacket extends TennisGameObject {
 		super(x, y, width, height);
 
 	}
+	
+	int ySpeed = 0;
+	int xSpeed = 5;
+	
+
 
 	void update() {
+		
+		super.update();
+		
+		if (x >= RacketSmash.width - 3) {
+			
+			xSpeed = xSpeed*-1;
+			
+		}
+		
+		
+		
+			
+			if (x < 0) {
+				
+				xSpeed = xSpeed*-1;
+				
+			}
+
+			
+		
+		
+				
+		y += ySpeed;
+		x += xSpeed;
 
 	}
 
 	void draw(Graphics g) {
 
 		g.setColor(Color.RED);
-		g.drawImage(TennisGamePanel.danger, x, y, width, height, null);
+		g.drawImage(TennisGamePanel.racketImg, x, y, width, height, null);
 
 	}
 

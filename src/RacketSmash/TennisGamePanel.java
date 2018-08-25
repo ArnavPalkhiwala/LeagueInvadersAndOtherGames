@@ -67,9 +67,9 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 		ptr = new PlayerTennisRacket(RacketSmash.width / 2 + 75, RacketSmash.height - 120, 100, 50);
 
-		or = new OpponentRacket(0, RacketSmash.height / 2, 100, 100);
+		or = new OpponentRacket(0, 100, 100, 100);
 
-		tom = new TennisObjectManager(ptr, tennisBalls, or);
+		tom = new TennisObjectManager(ptr, tennisBalls, or, this);
 
 		titleFont = new Font("Cambria", Font.PLAIN, 48);
 
@@ -150,6 +150,23 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 		}
 
 	}
+	
+	public void gameOver() {
+		
+		System.out.println("End Game");
+		
+		tgo = new TennisGameObject(10, 10, 100, 100);
+
+		ptr = new PlayerTennisRacket(RacketSmash.width / 2 + 75, RacketSmash.height - 120, 50, 50);
+		
+		or = new OpponentRacket(0, 100, 100, 100);
+		
+		//tennisBalls = new TennisBalls
+
+//		tom = new TennisObjectManager(ptr, null, or);
+		
+		TennisGamePanel.setCurrentState(TennisGamePanel.ENDSTATE);
+	}
 
 	void startGame() {
 		timer.start();
@@ -164,22 +181,11 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 		tom.update();
 		tom.manageTennisBalls();
 		tom.checkCollision();
+		System.out.println("this: " + this.hashCode());
 
 		if (tom.checkIfLose()) {
 
-			System.out.println("End Game");
-			
-			tgo = new TennisGameObject(10, 10, 100, 100);
-
-			ptr = new PlayerTennisRacket(RacketSmash.width / 2 + 75, RacketSmash.height - 120, 50, 50);
-			
-			or = new OpponentRacket(0, RacketSmash.height / 2, 100, 100);
-			
-			//tennisBalls = new TennisBalls
-
-			tom = new TennisObjectManager(ptr, null, or);
-			
-			TennisGamePanel.setCurrentState(TennisGamePanel.ENDSTATE);
+			gameOver();
 
 
 		}
@@ -326,8 +332,7 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 				JOptionPane.showMessageDialog(null,
 						"Racket Smash is a game where the player must hit the tennis balls that appear in the top of the screen "
-								+ "(and move down) with the player’s tennis racket. Once you bounce the tennis ball onto the other racket at"
-								+ " the top of the screen, you get a point. Try to get as many points as you can!");
+								+ "(and move down) with the player’s tennis racket. Each time a tennis ball hits your controlled racket, you get a point. If you hit a tennis ball off your racket to one at the top of the screen, you lose. Also, if you do not hit a tennis ball and it goes to the bottom of the screen, you also lose. Good Luck! ");
 
 			}
 
@@ -342,9 +347,9 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 		ptr = new PlayerTennisRacket(RacketSmash.width / 2 + 75, RacketSmash.height - 120, 50, 50);
 
-		or = new OpponentRacket(0, RacketSmash.height / 2, 100, 100);
+		or = new OpponentRacket(0, 100, 100, 100);
 
-		tom = new TennisObjectManager(ptr, null, or);
+		tom = new TennisObjectManager(ptr, null, or, this);
 		
 		TennisGamePanel.setCurrentState(TennisGamePanel.ENDSTATE);
 	}

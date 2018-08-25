@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 
 
 
-public class RacketSmash extends TennisGamePanel{
+public class RacketSmash {
 	
 	JFrame frame;
 	

@@ -8,7 +8,8 @@ public class TennisBalls extends TennisGameObject{
 	int ySpeed = 4;
 	int xSpeed = 0;
 	boolean isAlive = true;
-
+	boolean ifIntersected = false;
+	
 	public TennisBalls(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
