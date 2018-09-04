@@ -1,6 +1,7 @@
 package RacketSmash;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -23,6 +24,8 @@ public class TennisObjectManager {
 	long ballSpawnTime = 2000;
 
 	long tennisTimer = 0;
+	
+	long collision = 0;
 
 	private int totalScore;
 
@@ -84,6 +87,7 @@ public class TennisObjectManager {
 			tennisTimer = System.currentTimeMillis();
 		}
 
+
 	}
 
 	void checkCollision() {
@@ -97,7 +101,7 @@ public class TennisObjectManager {
 					totalScore = totalScore + 1;
 					System.out.println("Collision");
 					tennisBalls.ySpeed *= -1;
-					tennisBalls.ySpeed = tennisBalls.ySpeed - 2;
+					tennisBalls.ySpeed = tennisBalls.ySpeed;
 					System.out.println(tennisBalls);
 					tennisBalls.y -= 20;
 					tennisBalls.ifIntersected = true;

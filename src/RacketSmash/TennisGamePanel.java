@@ -37,6 +37,11 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	TennisObjectManager tom;
 	TennisBalls tennisBalls;
 
+	boolean moveUp;
+	boolean moveDown;
+	boolean moveLeft;
+	boolean moveRight;
+
 	Font titleFont;
 	Font subtitleFont;
 	Font subtitle2Font;
@@ -51,13 +56,12 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 	public static BufferedImage tenniscourtImg;
 
 	public static BufferedImage TC;
-	
-	public static BufferedImage tbImg;
-	
-	public static BufferedImage racketImg;
-	
-	public static BufferedImage danger;
 
+	public static BufferedImage tbImg;
+
+	public static BufferedImage racketImg;
+
+	public static BufferedImage danger;
 
 	public TennisGamePanel() {
 
@@ -90,13 +94,12 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 			tenniscourtImg = ImageIO.read(this.getClass().getResourceAsStream("tenniscourt.png"));
 
 			TC = ImageIO.read(this.getClass().getResourceAsStream("Tennis_court.jpg"));
-			
-			tbImg = ImageIO.read(this.getClass().getResourceAsStream("tb.png")); 
-			
-			racketImg = ImageIO.read(this.getClass().getResourceAsStream("racket.png")); 
-			
-			danger = ImageIO.read(this.getClass().getResourceAsStream("download.png")); 
 
+			tbImg = ImageIO.read(this.getClass().getResourceAsStream("tb.png"));
+
+			racketImg = ImageIO.read(this.getClass().getResourceAsStream("racket.png"));
+
+			danger = ImageIO.read(this.getClass().getResourceAsStream("download.png"));
 
 		} catch (IOException e) {
 
@@ -149,22 +152,50 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 			updateENDSTATE();
 		}
 
+		if (moveUp) {
+
+			ptr.updatePositionU();
+			;
+
+		}
+
+		if (moveDown) {
+
+			ptr.updatePositionD();
+			;
+
+		}
+
+		if (moveLeft) {
+
+			ptr.updatePositionL();
+			;
+
+		}
+
+		if (moveRight) {
+
+			ptr.updatePositionR();
+			;
+
+		}
+
 	}
-	
+
 	public void gameOver() {
-		
+
 		System.out.println("End Game");
-		
+
 		tgo = new TennisGameObject(10, 10, 100, 100);
 
 		ptr = new PlayerTennisRacket(RacketSmash.width / 2 + 75, RacketSmash.height - 120, 50, 50);
-		
-		or = new OpponentRacket(0, 100, 100, 100);
-		
-		//tennisBalls = new TennisBalls
 
-//		tom = new TennisObjectManager(ptr, null, or);
-		
+		or = new OpponentRacket(0, 100, 100, 100);
+
+		// tennisBalls = new TennisBalls
+
+		// tom = new TennisObjectManager(ptr, null, or);
+
 		TennisGamePanel.setCurrentState(TennisGamePanel.ENDSTATE);
 	}
 
@@ -186,7 +217,6 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 		if (tom.checkIfLose()) {
 
 			gameOver();
-
 
 		}
 
@@ -249,7 +279,7 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 		g.setColor(Color.BLACK);
 
-		int x = tom.gettotalScore() ;
+		int x = tom.gettotalScore();
 		g.drawString("You Earned " + x + " Point(s)", 292, 450);
 
 		g.setFont(subtitle);
@@ -273,7 +303,7 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 		if (CURRRENTSTATE == MENUSTATE) {
 
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-				
+
 				CURRRENTSTATE = GAMESTATE;
 				Random ran = new Random();
 				int x = ran.nextInt(1001);
@@ -305,44 +335,48 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 
-			ptr.updatePositionL();
+			moveLeft = true;
 
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			ptr.updatePositionR();
+
+			moveRight = true;
 
 		}
-
-		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-
-			ptr.updatePositionD();
-
-		}
-
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
-
-			ptr.updatePositionU();
-
-		}
+//
+//		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+//
+//			moveDown = true;
+//
+//		}
+//
+//		if (e.getKeyCode() == KeyEvent.VK_UP) {
+//
+//			moveUp = true;
+//
+//		}
 
 		if (CURRRENTSTATE == MENUSTATE) {
 
 			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 
 				JOptionPane.showMessageDialog(null,
-						"Racket Smash is a game where the player must hit the tennis balls that appear in the top of the screen "
-								+ "(and move down) with the player’s tennis racket. Each time a tennis ball hits your controlled racket, you get a point. If you hit a tennis ball off your racket to one at the top of the screen, you lose. Also, if you do not hit a tennis ball and it goes to the bottom of the screen, you also lose. Good Luck! ");
+						"Racket Smash is a game where the player must hit the tennis balls that appear in the top of the screen \n"
+								+ "(and move down) with the player’s tennis racket. Each time a tennis ball hits your controlled racket, \n"
+								+ "you get a point. If you hit a tennis ball off your racket to one at the top of the screen, you lose. \n "
+								+ "Also, if you do not hit a tennis ball and it goes to the bottom of the screen, you also lose. Good Luck!\n ");
 
 			}
 
 		}
+
 	}
 
 	private void resetGame() {
 		// TODO Auto-generated method stub
 		System.out.println("End Game");
-		
+
 		tgo = new TennisGameObject(10, 10, 100, 100);
 
 		ptr = new PlayerTennisRacket(RacketSmash.width / 2 + 75, RacketSmash.height - 120, 50, 50);
@@ -350,13 +384,38 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 		or = new OpponentRacket(0, 100, 100, 100);
 
 		tom = new TennisObjectManager(ptr, null, or, this);
-		
+
 		TennisGamePanel.setCurrentState(TennisGamePanel.ENDSTATE);
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
+
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+
+			moveUp = false;
+
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+
+			moveDown = false;
+
+		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+
+			moveLeft = false;
+
+		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+
+			moveRight = false;
+
+		}
+		
 
 	}
 

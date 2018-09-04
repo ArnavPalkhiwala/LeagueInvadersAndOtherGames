@@ -26,7 +26,7 @@ public class PlayerTennisRacket  extends TennisGameObject {
 
 		super.update(); 
 
-		speed = 35;
+		speed = 15;
 		x += speed;
 
 	}
@@ -35,7 +35,7 @@ public class PlayerTennisRacket  extends TennisGameObject {
 
 		super.update();
 
-		speed = 35;
+		speed = 15;
 		x -= speed;
 
 	}
@@ -44,7 +44,7 @@ public class PlayerTennisRacket  extends TennisGameObject {
 
 		super.update();
 		
-		speed = 35;
+		speed = 15;
 		y -= speed;
 
 	}
@@ -53,7 +53,7 @@ public class PlayerTennisRacket  extends TennisGameObject {
 
 		super.update();
 
-		speed = 35;
+		speed = 15;
 		y += speed;
 
 	}
