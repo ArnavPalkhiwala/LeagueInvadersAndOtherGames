@@ -16,7 +16,7 @@ public class OpponentRacket extends TennisGameObject {
 	}
 	
 	int ySpeed = 0;
-	int xSpeed = 5;
+	double xSpeed = 3.4309328;
 	
 
 

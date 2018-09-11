@@ -12,7 +12,7 @@ public class PlayerTennisRacket  extends TennisGameObject {
 	public PlayerTennisRacket (int x, int y, int height, int width) {
 		super(x, y, width, height);
 
-		speed = 15;
+		speed = 13;
 
 	}
 	
@@ -26,7 +26,7 @@ public class PlayerTennisRacket  extends TennisGameObject {
 
 		super.update(); 
 
-		speed = 15;
+		speed = 13;
 		x += speed;
 
 	}
@@ -35,7 +35,7 @@ public class PlayerTennisRacket  extends TennisGameObject {
 
 		super.update();
 
-		speed = 15;
+		speed = 13;
 		x -= speed;
 
 	}
@@ -44,7 +44,7 @@ public class PlayerTennisRacket  extends TennisGameObject {
 
 		super.update();
 		
-		speed = 15;
+		speed = 13;
 		y -= speed;
 
 	}
@@ -53,7 +53,7 @@ public class PlayerTennisRacket  extends TennisGameObject {
 
 		super.update();
 
-		speed = 15;
+		speed = 13;
 		y += speed;
 
 	}

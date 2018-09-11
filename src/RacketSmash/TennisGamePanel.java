@@ -1,6 +1,9 @@
 package RacketSmash;
 
 import java.awt.Color;
+import java.io.*;
+import sun.audio.*;
+
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -344,18 +347,18 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 			moveRight = true;
 
 		}
-//
-//		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-//
-//			moveDown = true;
-//
-//		}
-//
-//		if (e.getKeyCode() == KeyEvent.VK_UP) {
-//
-//			moveUp = true;
-//
-//		}
+
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+
+			moveDown = true;
+
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+
+			moveUp = true;
+
+		}
 
 		if (CURRRENTSTATE == MENUSTATE) {
 
@@ -365,7 +368,8 @@ public class TennisGamePanel extends JPanel implements ActionListener, KeyListen
 						"Racket Smash is a game where the player must hit the tennis balls that appear in the top of the screen \n"
 								+ "(and move down) with the player’s tennis racket. Each time a tennis ball hits your controlled racket, \n"
 								+ "you get a point. If you hit a tennis ball off your racket to one at the top of the screen, you lose. \n "
-								+ "Also, if you do not hit a tennis ball and it goes to the bottom of the screen, you also lose. Good Luck!\n ");
+								+ "Also, if you do not hit a tennis ball and it goes to the bottom of the screen, you also lose. "
+								+ "If you hit the ball too late, you will hit the frame of the racket, and it will continue moving down the screen. Good Luck!");
 
 			}
 

@@ -5,6 +5,10 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 import leagueInvaders.Alien;
 import leagueInvaders.LeagueInvaders;
 import leagueInvaders.Rocketship;
@@ -21,7 +25,7 @@ public class TennisObjectManager {
 	
 	TennisGamePanel tgp;
 
-	long ballSpawnTime = 2000;
+	long ballSpawnTime = 1250;
 
 	long tennisTimer = 0;
 	
@@ -112,6 +116,24 @@ public class TennisObjectManager {
 						
 						tgp.gameOver();
 					}
+					
+//					public static synchronized void playSound(final String url) {
+//						  new Thread(new Runnable() {
+//						  // The wrapper thread is unnecessary, unless it blocks on the
+//						  // Clip finishing; see comments.
+//						    public void run() {
+//						      try {
+//						        Clip clip = AudioSystem.getClip();
+//						        AudioInputStream inputStream = AudioSystem.getAudioInputStream(
+//						          Main.class.getResourceAsStream("/path/to/sounds/" + url));
+//						        clip.open(inputStream);
+//						        clip.start(); 
+//						      } catch (Exception e) {
+//						        System.err.println(e.getMessage());
+//						      }
+//						    }
+//						  }).start();
+//						}
 					
 
 				}
