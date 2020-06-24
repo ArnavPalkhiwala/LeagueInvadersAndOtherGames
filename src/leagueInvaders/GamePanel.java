@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -63,10 +64,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			rs.isAlive = true;
 			om.aliensList = new ArrayList<Alien>();
 			om.projectilesList = new ArrayList<Projectile>();
-			
+
 		}
-		
-		
 
 	}
 
@@ -101,7 +100,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	void drawGameState(Graphics g) {
 
-	
 		g.drawImage(spaceImg, 0, 0, LeagueInvaders.width, LeagueInvaders.height, null);
 
 		om.draw(g);
@@ -110,25 +108,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	void drawEndState(Graphics g) {
 
+		g.setColor(Color.BLUE);
+
 		g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height);
+		g.setColor(Color.WHITE);
+		g.setFont(titleFont);
+		g.drawString("GAME OVER", 100, 200);
+		g.setFont(new Font("Poppins", Font.PLAIN, 20));
+		g.drawString("You Killed " + om.getScore() + " enemies ", 140, 300);
+		g.drawString("Press Enter to restart ", 140, 450);
 
-		g.setFont(gameOver);
-
-		g.setColor(Color.BLACK);
-
-		g.drawString("GAME OVER", 90, 150);
-
-		g.setFont(enemies);
-
-		g.setColor(Color.BLACK);
-
-		g.drawString("You Killed " + om.getScore() + " Enemies", 110, 300);
-
-		g.setFont(subtitle);
-
-		g.setColor(Color.BLACK);
-
-		g.drawString("Press ENTER to Restart", 110, 450);
 	}
 
 	@Override
@@ -216,7 +205,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("Hi");
 	}
 
 	@Override
@@ -229,6 +217,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				CURRENT_STATE = GAME_STATE;
 				rs.x = 225;
 				om.setScore(0);
+			} else if (e.getKeyChar() == KeyEvent.VK_SPACE) {
+				JOptionPane.showMessageDialog(null,
+						"The goal of this game is to kill all of the aliens.\nPress space to shoot the aliens which are coming towards you and\nuse the up, down, left, and right keys to move your rocketship around.\nEverytime you kill an alien, your score will increase by 1.\nGood luck!");
 			}
 
 		}
@@ -292,7 +283,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("Wazzup");
 	}
 }
 
